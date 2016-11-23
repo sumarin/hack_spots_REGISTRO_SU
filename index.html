@@ -19,10 +19,10 @@
     </head>
 <body>
     <div id="wrapper">
-        <h1>Hack Spots</h1>
+        <h1>Control Expedientes</h1>
         <div>
             <ul class="nav">
-                <li><strong>The collected favorites of those who hack</strong></li>
+                <li><strong>Estado de las peticiones de informe</strong></li>
                 <li><a href="#info">INFO</a> -</li>
                 <li><a href="http://jlord.github.com/sheetsee.js" target="_blank">POWERED BY SHEETSEE.JS</a> -</li>
                 <li><a href="http://www.github.com/jlord/hack-spots" target="_blank">GITHUB</a> -</li>
@@ -45,7 +45,7 @@
         <div id="info" class="container">
             <h3>Contribute!</h3>
             <div id="theNumberofSpots"></div>
-            <p>This website is hooked up to <a href="https://docs.google.com/spreadsheets/d/1RmM-8nfgReU-Mcq0VZeyD2EiDXwZ-YohQsaHX2ZtRkU/edit?usp=sharing" target="_blank">this Google Spreadsheet</a>, which I've shared, so click and add your favorite hack spots to the bottom of the list! For the map you'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>. The locating of these places is helpful, so please try to fill out all the columns.</p>
+            <p>Informacion provenientes de la siguiente <a href="https://docs.google.com/spreadsheets/d/1jPaBPJizq3z0eo8hHyTGhYvxhmn4i5zAWcatdedyrXU/edit?usp=sharing" target="_blank">hoja de Google Drive</a>, which I've shared, so click and add your favorite hack spots to the bottom of the list! For the map you'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>. The locating of these places is helpful, so please try to fill out all the columns.</p>
 
             <h3>Info</h3>
             <p>When I'm visiting a new city I'd like to know which coffee shops have the best vibes, great coffee and are good for hunkering down and having a good hack. Yelp will tell you where the Starbucks is and Foursquare will tell you where your friend's have <em>been</em> - but did they like it and was it a grab in go place or a hack place? Plus, what about the people I don't follow on Foursquare or who can't check-in when in other countries?</p>
@@ -59,56 +59,60 @@
 
     <script id="hackSpotsTable" type="text/html">
         <table>
-            <tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">City</th><th class="tHeader">State</th><th class="tHeader">Country</th><th class="">Elsewhere</th></tr>
+            <tr><th class="tHeader">C&oacute;digo</th><th class="tHeader">Año</th><th class="tHeader">Solicitud</th><th class="tHeader">Administrativo</th><th class="tHeader">Solicitante</th><th class="tHeader">Situaci&oacute;n</th><th class="tHeader">Fecha solicitud</th><th class="tHeader">Estado</th><th class="">Elsewhere</th></tr>
             {{#rows}}
-                <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{state}}</td><td>{{country}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
+                <tr id="{{rowNumber}}" class="spotRow"><td>{{codexpte}}</td><td>{{año}}</td><td>{{solicitud}}</td><td>{{admnivo}}</td><td>{{solicitante}}</td><td><td>{{situacion}}</td><td>{{fechasolicitud}}</td><td>{{estado}}</td><td><a class="button" href="https://maps.google.com/maps?q={{situacion}}" target="_blank">G Map</a> </td></tr>
             {{/rows}}
         </table>
     </script>
 
     <script id="latestSpot" type="text/html">
         {{#rows}}
-            <h4 class="fauxButton">MOST RECENT SPOT</h4>
-            <h2>{{name}}</h2>
-            <p class="colorText">{{address}}<p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <h4 class="fauxButton">ULTIMA SOLICITUD</h4>
+            <h2>{{codexpte}}</h2>
+            <p class="colorText">{{solicitud}}<p>
+        <!--   <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>-->
             <ul>
-                <li><span class="category">Wifi:</span> {{wifipassword}}</li>
-                <li><span class="category">Outlets:</span> {{outlets}}</li>
-                <li><span class="category">Couch:</span> {{couch}}</li>
-                <li><span class="category">Large Table:</span> {{largetable}}</li>
-                <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
-                <li><span class="category">Brewing:</span> {{brewing}}</li>
-                <li><span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a></li>
+                <li><span class="category">Año:</span> {{año}}</li>
+                <li><span class="category">Solicitante:</span> {{solicitante}}</li>
+                <li><span class="category">Situacion:</span> {{situacion}}</li>
+                <li><span class="category">Tramita:</span> {{admnivo}}</li>
+                <li><span class="category">Fecha solicitud:</span> {{fechasolicitud}}</li>
+                <li><span class="category">Estado actual:</span> {{estado}}</li>
+              <!--  <li><span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a></li>-->
             </ul>
             <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+                <li><a href="https://maps.google.com/maps?q={{situacion}}" target="_blank">Ver en Google Maps</a></li>
+                <!--
+                <li><a href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
+                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>-->
             </ul>
         {{/rows}}
     </script>
 
     <script id="theNumberofSpots" type="text/html">
-        <p><strong><span class="red-text">{{numberOfSpots}}</span> hack spots strong!</p>
+        <p>N&uacute;mero de solicitudes<strong><span class="red-text">{{numberOfSpots}}</span></p>
     </script>
 
     <script id="selectedSpot" type="text/html">
         {{#rows}}
-            <h4 class="fauxButton">SELECTED SPOT</h4>
-            <h2>{{name}}</h2>
-            <p class="colorText">{{address}}<p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <h4 class="fauxButton">EXPEDIENTE SELECIONADO</h4>
+            <h2>{{codexpte}}</h2>
+            <p class="colorText">{{situacion}}<p>
+            <!--<p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>-->
             <ul>
-                <li><span class="category">Wifi:</span> {{wifipassword}}</li>
-                <li><span class="category">Outlets:</span> {{outlets}}</li>
-                <li><span class="category">Couch:</span> {{couch}}</li>
-                <li><span class="category">Large Table:</span> {{largetable}}</li>
-                <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
-                <li><span class="category">Brewing:</span> {{brewing}}</li>
+              <li><span class="category">Año:</span> {{año}}</li>
+              <li><span class="category">Solicitante:</span> {{solicitante}}</li>
+              <li><span class="category">Situacion:</span> {{situacion}}</li>
+              <li><span class="category">Tramita:</span> {{admnivo}}</li>
+              <li><span class="category">Fecha solicitud:</span> {{fechasolicitud}}</li>
+              <li><span class="category">Estado actual:</span> {{estado}}</li>
             </ul>
             <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+              <li><a href="https://maps.google.com/maps?q={{situacion}}" target="_blank">Ver en Google Maps</a></li>
+              <!--
+              <li><a href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
+              <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>-->
             </ul>
         {{/rows}}
     </script>
@@ -116,7 +120,7 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             var gData
-            var URL = "1RmM-8nfgReU-Mcq0VZeyD2EiDXwZ-YohQsaHX2ZtRkU"
+            var URL = "1jPaBPJizq3z0eo8hHyTGhYvxhmn4i5zAWcatdedyrXU"
                 Tabletop.init({ key: URL, callback: showInfo, simpleSheet: true })
         })
 
@@ -133,13 +137,13 @@
 
             // create geoJSON with coordinates and other
             // useful bits from the original data
-            var optionsJSON = ["name", "address", "city", "rowNumber"]
+            var optionsJSON = ["codexpte", "situacion", "solicitante", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'jllord.n7aml2bc')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }}</h2>", true)
+            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ codexpte }}</h2>", true)
 
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
@@ -150,7 +154,7 @@
             })
             // set it and pan to it
             $('#latestSpot').html(latestSpot)
-            map.setView([theLatestSpot.lat, theLatestSpot.long], 14)
+            map.setView([theLatestSpot.lat, theLatestSpot.long], 16)
 
             // when someone clicks on a row, highlight it and
             // re-center the map
@@ -166,7 +170,7 @@
                 $('#latestSpot').css("display", "none")
                 $('#selectedSpot').html(selectedSpot).css("display", "inline")
                 var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-                map.setView(selectedCoords, 14)
+                map.setView(selectedCoords, 16)
             })
 
             // so that the first map and info that loads
@@ -176,7 +180,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+                    if (!row.lat || !row.long || !row.codexpte || !row.situacion || !row.solicitante || !row.estado ) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
